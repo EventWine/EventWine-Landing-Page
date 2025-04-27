@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            height: 100px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 5%;
+            transition: var(--transition);
+        }
         .policy-container {
             max-width: 1000px;
             margin: 120px auto 50px;
@@ -136,7 +154,7 @@
     <h2>8. Contacto</h2>
     <p>Si tiene alguna pregunta sobre esta Política de Privacidad, por favor contáctenos a través de contacto@eventwine.com.</p>
 
-    <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
+    <a href="../index.html" class="back-link"><i class="fas fa-arrow-left"></i> Volver a la página principal</a>
 </div>
 
 <footer>
