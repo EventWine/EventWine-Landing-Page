@@ -98,4 +98,127 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // FUNCIONALIDADES PARA EL FOOTER MEJORADO
+
+    // Funcionalidad para el formulario de newsletter
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            const email = emailInput.value.trim();
+
+            if (email) {
+                // Aquí iría el código para procesar la suscripción
+                // Para esta demo, solo mostramos un mensaje
+                alert('¡Gracias por suscribirte a nuestro boletín informativo!');
+                emailInput.value = '';
+            }
+        });
+    }
+
+    // Mejora de experiencia en enlaces de redes sociales
+    const socialLinks = document.querySelectorAll('.social-icons a');
+    if (socialLinks.length > 0) {
+        socialLinks.forEach(link => {
+            link.setAttribute('rel', 'noopener noreferrer');
+
+            // Añadir atributo title para mejorar accesibilidad
+            const icon = link.querySelector('i');
+            if (icon) {
+                const socialNetwork = icon.className.includes('facebook') ? 'Facebook' :
+                    icon.className.includes('instagram') ? 'Instagram' :
+                        icon.className.includes('twitter') ? 'Twitter' :
+                            icon.className.includes('linkedin') ? 'LinkedIn' : 'Redes sociales';
+                link.setAttribute('title', `Síguenos en ${socialNetwork}`);
+            }
+        });
+    }
+
+    // Manejar envío del formulario de contacto
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (name && email && message) {
+                // Aquí iría el código para procesar el formulario de contacto
+                alert(`¡Gracias ${name} por tu mensaje! Te responderemos pronto.`);
+                contactForm.reset();
+            }
+        });
+    }
+
+    // FUNCIONALIDAD DEL BANNER DE COOKIES
+
+    // Manejo del banner de cookies
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptCookies = document.getElementById('accept-cookies');
+    const rejectCookies = document.getElementById('reject-cookies');
+
+    // Comprobar si el usuario ya ha tomado una decisión sobre las cookies
+    const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+
+    if (cookiesAccepted === null && cookieBanner) {
+        // Si el usuario no ha tomado una decisión, mostrar el banner
+        cookieBanner.style.display = 'block';
+
+        if (acceptCookies) {
+            acceptCookies.addEventListener('click', function() {
+                localStorage.setItem('cookiesAccepted', 'true');
+                cookieBanner.style.display = 'none';
+                // Aquí se podrían activar las cookies que no son esenciales
+            });
+        }
+
+        if (rejectCookies) {
+            rejectCookies.addEventListener('click', function() {
+                localStorage.setItem('cookiesAccepted', 'false');
+                cookieBanner.style.display = 'none';
+                // Aquí se podrían desactivar las cookies que no son esenciales
+            });
+        }
+    }
+
+    // Funcionalidad para los enlaces de navegación en las páginas de políticas
+    const policyNavLinks = document.querySelectorAll('nav a');
+    if (policyNavLinks.length > 0) {
+        policyNavLinks.forEach(link => {
+            // Si estamos en una página de políticas y el enlace contiene un #
+            if (window.location.pathname.includes('politica') ||
+                window.location.pathname.includes('terminos')) {
+
+                const href = link.getAttribute('href');
+                if (href && href.includes('#') && !href.startsWith('#')) {
+                    // Es un enlace a una sección de la página principal
+                    link.addEventListener('click', function(e) {
+                        // No prevenimos el evento por defecto, permitimos la navegación
+                        // pero guardamos la sección objetivo en localStorage
+                        const target = href.split('#')[1];
+                        if (target) {
+                            localStorage.setItem('scrollToSection', target);
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    // Verificar si hay que hacer scroll a alguna sección (al volver de páginas de políticas)
+    const scrollToSection = localStorage.getItem('scrollToSection');
+    if (scrollToSection && window.location.pathname === '/' || window.location.pathname.endsWith('index.html')) {
+        // Estamos en la página principal y hay una sección a la que ir
+        setTimeout(() => {
+            const section = document.getElementById(scrollToSection);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Limpiar después de usar
+            localStorage.removeItem('scrollToSection');
+        }, 500); // Pequeño retraso para asegurar que la página esté cargada
+    }
 });
