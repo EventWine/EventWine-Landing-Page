@@ -92,10 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const demoButton = document.getElementById('demoButton');
     if (demoButton) {
         demoButton.addEventListener('click', function() {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            // Redirección a la página desplegada
+            window.location.href = 'https://event-wine-front.vercel.app/home/sign-in';
+            // Reemplaza la URL de arriba con la URL real de tu página desplegada
         });
     }
 
