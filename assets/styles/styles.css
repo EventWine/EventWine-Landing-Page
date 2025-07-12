@@ -75,6 +75,18 @@ nav ul li a {
     transition: var(--transition);
     position: relative;
 }
+nav .get-started-btn {
+    background-color: var(--accent);
+    color: var(--dark);
+    padding: 0.4rem 1rem;
+    border-radius: var(--radius);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+nav .get-started-btn:hover {
+    background-color: #c09c2c;
+}
 
 nav ul li a:after {
     content: '';
@@ -338,6 +350,34 @@ section p {
 
 #contactForm button:hover {
     background-color: #c09c2c;
+}
+/* Sección de llamada a la acción final */
+#cta-end {
+    text-align: center;
+    padding: 4rem 10%;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+}
+
+.cta-button {
+    background-color: var(--primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.cta-button:hover {
+    background-color: #6b0000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 /* Sobre Nosotros */
